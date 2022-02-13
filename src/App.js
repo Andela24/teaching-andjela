@@ -1,13 +1,23 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import QuestionItem from './QuestionItem';
 
 function App() {
+  const [count, setCount] = useState(0)
+  const [formData, setFormData] = useState("")
+
+  useEffect(() => {
+    console.log('Hi')
+    console.log("---")
+  }, [count])
+
   let info = [
     "Hi",
     "Test",
-    "Bye"
+    "Bye",
+    "d"
   ]
+
 
   let question1 = {
     question: "How are you?",
@@ -32,10 +42,22 @@ function App() {
     return <QuestionItem question={q.question} answer={q.answer} />
   })
 
+  function handleClick() {
+    setCount((count) => count + 1)
+  }
+
+  function handleChange(e) {
+    setFormData(e.target.value)
+  }
+
   return (
     <div className="App">
       {words}
       {questionList}
+      <h1>{count}</h1>
+      <button onClick={handleClick}>Click me</button>
+      <input type="text" name="test" style={{ fontSize: "2em" }} value={formData} onChange={handleChange} />
+      <p>{formData}</p>
     </div>
   );
 }
