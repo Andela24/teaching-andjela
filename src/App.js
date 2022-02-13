@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react'
+import QuestionItem from './QuestionItem';
 
 function App() {
+  let info = [
+    "Hi",
+    "Test",
+    "Bye"
+  ]
+
+  let question1 = {
+    question: "How are you?",
+    answer: "Great!"
+  }
+  let question2 = {
+    question: "what is today?",
+    answer: "Saturday"
+  }
+  let question3 = {
+    question: "What's your name?",
+    answer: "Andjela"
+  }
+
+  let questions = [question1, question2, question3]
+
+  const words = info.map(word => {
+    return <h1>{word}</h1>
+  })
+
+  let questionList = questions.map(q => {
+    return <QuestionItem question={q.question} answer={q.answer} />
+  })
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {words}
+      {questionList}
     </div>
   );
 }
 
 export default App;
+
